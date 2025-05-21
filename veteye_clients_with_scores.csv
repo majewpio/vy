@@ -1,1 +1,101 @@
-clinic_id,clinic_name,buy_score,segment,country
+clinic_id,clinic_name,segment,country,clinic_size,buy_score
+CL-00001,Klinika Zdrowy Pupil #1000,szpital,Niemcy,8,0.376
+CL-00002,SpecVet Zdrowy Pupil #1001,szpital,Niemcy,2,0.224
+CL-00003,SpecVet Cztery Łapy #1002,klinika,Czechy,7,0.766
+CL-00004,Centrum AnimalCare #1003,mobilny,Czechy,9,0.839
+CL-00005,Przychodnia Psi Raj #1004,mobilny,Niemcy,5,0.37
+CL-00006,Klinika Zdrowy Pupil #1005,mobilny,Polska,12,0.87
+CL-00007,Klinika Psi Raj #1006,szpital,Polska,13,0.262
+CL-00008,SpecVet Vet-Med #1007,szpital,Polska,23,0.255
+CL-00009,Gabinet Zdrowy Pupil #1008,klinika,Polska,13,0.42
+CL-00010,Gabinet AnimalCare #1009,mobilny,Niemcy,7,0.729
+CL-00011,Klinika Cztery Łapy #1010,szpital,Polska,18,0.776
+CL-00012,Centrum Vet-Med #1011,szpital,Czechy,18,0.373
+CL-00013,Klinika AnimalCare #1012,klinika,Niemcy,13,0.412
+CL-00014,SpecVet Vet-Med #1013,klinika,Czechy,16,0.513
+CL-00015,Centrum AnimalCare #1014,mobilny,Polska,8,0.789
+CL-00016,SpecVet Psi Raj #1015,szpital,Niemcy,12,0.373
+CL-00017,SpecVet Psi Raj #1016,klinika,Polska,4,0.321
+CL-00018,Centrum Cztery Łapy #1017,klinika,Niemcy,13,0.671
+CL-00019,Gabinet Cztery Łapy #1018,klinika,Czechy,24,0.29
+CL-00020,Gabinet Vet-Med #1019,klinika,Niemcy,14,0.325
+CL-00021,Gabinet Cztery Łapy #1020,klinika,Czechy,4,0.888
+CL-00022,SpecVet Cztery Łapy #1021,klinika,Polska,12,0.802
+CL-00023,SpecVet Zdrowy Pupil #1022,szpital,Niemcy,16,0.215
+CL-00024,Gabinet AnimalCare #1023,klinika,Polska,19,0.948
+CL-00025,Centrum Zdrowy Pupil #1024,szpital,Polska,5,0.721
+CL-00026,Przychodnia Vet-Med #1025,szpital,Czechy,14,0.962
+CL-00027,Przychodnia Vet-Med #1026,mobilny,Czechy,21,0.495
+CL-00028,Centrum Zdrowy Pupil #1027,klinika,Polska,3,0.467
+CL-00029,Przychodnia Cztery Łapy #1028,klinika,Polska,3,0.759
+CL-00030,Klinika Zdrowy Pupil #1029,mobilny,Polska,17,0.388
+CL-00031,Przychodnia Cztery Łapy #1030,klinika,Czechy,19,0.655
+CL-00032,Centrum Psi Raj #1031,klinika,Polska,4,0.721
+CL-00033,Centrum Psi Raj #1032,szpital,Polska,22,0.716
+CL-00034,Klinika Psi Raj #1033,szpital,Niemcy,4,0.396
+CL-00035,Centrum AnimalCare #1034,mobilny,Polska,9,0.565
+CL-00036,Klinika Psi Raj #1035,szpital,Polska,2,0.715
+CL-00037,Klinika Zdrowy Pupil #1036,klinika,Polska,14,0.584
+CL-00038,Centrum Zdrowy Pupil #1037,klinika,Niemcy,1,0.978
+CL-00039,Centrum Vet-Med #1038,mobilny,Czechy,24,0.986
+CL-00040,Centrum AnimalCare #1039,klinika,Niemcy,7,0.965
+CL-00041,SpecVet Zdrowy Pupil #1040,szpital,Niemcy,2,0.24
+CL-00042,SpecVet AnimalCare #1041,klinika,Czechy,3,0.873
+CL-00043,Klinika AnimalCare #1042,mobilny,Polska,19,0.395
+CL-00044,SpecVet Zdrowy Pupil #1043,mobilny,Czechy,19,0.647
+CL-00045,Gabinet AnimalCare #1044,szpital,Czechy,11,0.389
+CL-00046,Gabinet Psi Raj #1045,mobilny,Polska,1,0.562
+CL-00047,Klinika Zdrowy Pupil #1046,szpital,Polska,17,0.41
+CL-00048,Klinika AnimalCare #1047,mobilny,Niemcy,6,0.546
+CL-00049,Gabinet Cztery Łapy #1048,szpital,Czechy,1,0.728
+CL-00050,Klinika AnimalCare #1049,mobilny,Polska,4,0.787
+CL-00051,Gabinet Cztery Łapy #1050,klinika,Czechy,11,0.361
+CL-00052,Gabinet Cztery Łapy #1051,mobilny,Niemcy,2,0.273
+CL-00053,Gabinet Zdrowy Pupil #1052,klinika,Niemcy,25,0.303
+CL-00054,Przychodnia Psi Raj #1053,szpital,Czechy,14,0.643
+CL-00055,Przychodnia Cztery Łapy #1054,klinika,Niemcy,19,0.636
+CL-00056,Klinika Vet-Med #1055,mobilny,Polska,12,0.366
+CL-00057,Klinika Vet-Med #1056,szpital,Niemcy,20,0.792
+CL-00058,Przychodnia AnimalCare #1057,klinika,Niemcy,1,0.342
+CL-00059,Centrum AnimalCare #1058,mobilny,Polska,23,0.285
+CL-00060,Centrum AnimalCare #1059,klinika,Niemcy,12,0.441
+CL-00061,Przychodnia AnimalCare #1060,klinika,Czechy,7,0.515
+CL-00062,Klinika Vet-Med #1061,mobilny,Czechy,17,0.516
+CL-00063,SpecVet Vet-Med #1062,klinika,Polska,9,0.341
+CL-00064,Gabinet Zdrowy Pupil #1063,klinika,Czechy,14,0.473
+CL-00065,Centrum Cztery Łapy #1064,szpital,Polska,13,0.911
+CL-00066,Klinika Psi Raj #1065,klinika,Czechy,18,0.743
+CL-00067,Przychodnia Vet-Med #1066,mobilny,Polska,22,0.927
+CL-00068,Klinika Vet-Med #1067,szpital,Niemcy,22,0.523
+CL-00069,Gabinet Cztery Łapy #1068,klinika,Polska,14,0.725
+CL-00070,Przychodnia Cztery Łapy #1069,szpital,Niemcy,13,0.633
+CL-00071,Gabinet AnimalCare #1070,mobilny,Czechy,20,0.717
+CL-00072,Centrum AnimalCare #1071,szpital,Niemcy,24,0.334
+CL-00073,SpecVet Cztery Łapy #1072,mobilny,Polska,25,0.386
+CL-00074,Przychodnia AnimalCare #1073,klinika,Polska,8,0.977
+CL-00075,Klinika Psi Raj #1074,mobilny,Czechy,19,0.354
+CL-00076,Centrum Psi Raj #1075,klinika,Polska,21,0.743
+CL-00077,Klinika Psi Raj #1076,klinika,Polska,23,0.609
+CL-00078,Przychodnia Zdrowy Pupil #1077,mobilny,Polska,15,0.727
+CL-00079,SpecVet Vet-Med #1078,mobilny,Czechy,24,0.905
+CL-00080,SpecVet Psi Raj #1079,klinika,Czechy,16,0.556
+CL-00081,Gabinet Cztery Łapy #1080,mobilny,Czechy,8,0.417
+CL-00082,Gabinet AnimalCare #1081,mobilny,Niemcy,11,0.905
+CL-00083,Przychodnia AnimalCare #1082,mobilny,Czechy,5,0.758
+CL-00084,Centrum Vet-Med #1083,szpital,Niemcy,14,0.249
+CL-00085,Centrum Cztery Łapy #1084,szpital,Polska,25,0.655
+CL-00086,Gabinet Vet-Med #1085,mobilny,Niemcy,18,0.791
+CL-00087,SpecVet AnimalCare #1086,mobilny,Polska,9,0.544
+CL-00088,Gabinet Psi Raj #1087,szpital,Polska,15,0.926
+CL-00089,SpecVet Zdrowy Pupil #1088,mobilny,Czechy,19,0.724
+CL-00090,Centrum AnimalCare #1089,mobilny,Polska,2,0.406
+CL-00091,Centrum Vet-Med #1090,mobilny,Niemcy,9,0.794
+CL-00092,Gabinet Zdrowy Pupil #1091,mobilny,Polska,24,0.626
+CL-00093,Gabinet AnimalCare #1092,szpital,Polska,25,0.956
+CL-00094,Klinika AnimalCare #1093,klinika,Polska,20,0.32
+CL-00095,Klinika Cztery Łapy #1094,klinika,Niemcy,23,0.402
+CL-00096,SpecVet Cztery Łapy #1095,szpital,Czechy,4,0.814
+CL-00097,Gabinet Zdrowy Pupil #1096,szpital,Polska,10,0.655
+CL-00098,Centrum Psi Raj #1097,szpital,Polska,3,0.668
+CL-00099,Przychodnia Zdrowy Pupil #1098,szpital,Niemcy,22,0.674
+CL-00100,SpecVet Zdrowy Pupil #1099,mobilny,Czechy,14,0.723
