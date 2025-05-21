@@ -1,93 +1,87 @@
-
+# streamlit_crm_demo.py
 import streamlit as st
 import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from xgboost import XGBClassifier
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
-import seaborn as sns
+from PIL import Image
 
-st.set_page_config(page_title="Vet-Eye AI CRM", layout="wide")
+# ------------------ TŁO LOGOWANIA ------------------
+@st.cache_data
+def load_login_bg():
+    return Image.open("logowanie.JPG")
 
-# --- LOGOWANIE ---
+# ------------------ ZAŁADUJ ZDJĘCIA PRODUKTÓW ------------------
+@st.cache_data
+def load_product_images():
+    return {
+        "vet pro 70": Image.open("vet_pro_70.JPG"),
+        "vet portable 15": Image.open("vet_portable_15.JPG"),
+        "vet pro-key 75": Image.open("vet_pro_75.JPG")
+    }
+
+# ------------------ LOGOWANIE ------------------
+def login():
+    st.image(load_login_bg(), use_column_width=True)
+    st.title("Vet-Eye CRM Assistant")
+    st.subheader("Zaloguj się, aby uzyskać dostęp do panelu handlowca")
+    login = st.text_input("Login")
+    password = st.text_input("Hasło", type="password")
+    if st.button("Zaloguj"):
+        if login == "handlowiec" and password == "vet123":
+            st.session_state.logged_in = True
+        else:
+            st.error("Niepoprawny login lub hasło")
+
+# ------------------ STRATEGIE I SKRYPTY ------------------
+def get_action(score, churn):
+    if churn >= 0.8:
+        return "Skontaktuj się natychmiast: klient zagrożony odejściem", "Zadzwoń i zapytaj, czy czegoś nie brakuje, zaproponuj wsparcie techniczne lub darmowe szkolenie."
+    elif score >= 0.85:
+        return "Umów demo lub spotkanie", "Dzień dobry, zauważyliśmy Państwa wzmożoną aktywność i chcielibyśmy zaproponować prezentację nowego modelu aparatu USG."
+    elif score >= 0.65:
+        return "Wyślij e-mail z ofertą", "Cześć! Mamy nową ofertę dla klinik takich jak Państwa. Czy mogę przesłać szczegóły?"
+    else:
+        return "Monitoruj lead", "Na ten moment klient nie wykazuje gotowości zakupowej."
+
+# ------------------ PRODUKT NA PODSTAWIE SEGMENTU ------------------
+def get_product_recommendation(row):
+    if row['segment'] == 'mobilny':
+        return "vet portable 15"
+    elif row['clinic_size'] >= 10:
+        return "vet pro-key 75"
+    else:
+        return "vet pro 70"
+
+# ------------------ PANEL GŁÓWNY ------------------
+@st.cache_data
+def load_data():
+    scores = pd.read_csv("veteye_clients_with_scores.csv")
+    churn = pd.read_csv("veteye_clients_with_churn_scores.csv")
+    df = scores.merge(churn[['clinic_id', 'churn_score']], on='clinic_id')
+    return df
+
+def dashboard():
+    st.title("Panel handlowca Vet-Eye")
+    df = load_data()
+    images = load_product_images()
+
+    for i, row in df.sort_values(by='buy_score', ascending=False).head(10).iterrows():
+        st.markdown("---")
+        st.subheader(f"📅 {row['clinic_name']}")
+        st.write(f"Segment: {row['segment']} | Lokalizacja: {row['country']}")
+        st.write(f"**Scoring sprzedażowy:** {round(row['buy_score']*100,1)}% | **Ryzyko odejścia:** {round(row['churn_score']*100,1)}%")
+
+        action, script = get_action(row['buy_score'], row['churn_score'])
+        st.write(f"🔄 **Zalecane działanie:** {action}")
+        st.info(script)
+
+        product = get_product_recommendation(row)
+        st.write(f"🚀 **Rekomendowany produkt:** {product}")
+        st.image(images[product], width=300)
+
+# ------------------ APLIKACJA ------------------
 if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
 
-def login():
-    st.title("🔐 Vet-Eye CRM – Logowanie")
-    username = st.text_input("Login", value="handlowiec")
-    password = st.text_input("Hasło", type="password")
-    if st.button("Zaloguj się"):
-        if username == "handlowiec" and password == "vet123":
-            st.session_state.logged_in = True
-        else:
-            st.error("Błędny login lub hasło.")
-
 if not st.session_state.logged_in:
     login()
-    st.stop()
-
-# --- PULPIT CRM ---
-st.title("🚀 Vet-Eye CRM – AI Asystent Sprzedaży")
-st.sidebar.success("Zalogowano jako: handlowiec")
-
-uploaded_file = st.sidebar.file_uploader("📥 Wgraj plik CSV z leadami", type="csv")
-
-if uploaded_file:
-    df = pd.read_csv(uploaded_file)
-    st.subheader("📋 Lista leadów")
-    st.dataframe(df[['Nazwa kliniki', 'Województwo', 'Typ kliniki', 'Źródło leada']])
-
-    if st.button("🧠 Wykonaj scoring AI"):
-        with st.spinner("Analiza i trenowanie modelu..."):
-
-            df_encoded = pd.get_dummies(df, columns=['Województwo', 'Typ kliniki', 'Źródło leada'])
-            X = df_encoded.drop(columns=['Nazwa kliniki', 'Kupiono'], errors='ignore')
-            y = df_encoded['Kupiono'] if 'Kupiono' in df_encoded.columns else None
-
-            if y is not None:
-                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
-                model = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
-                model.fit(X_train, y_train)
-                acc = accuracy_score(y_test, model.predict(X_test))
-                st.success(f"✅ Dokładność modelu: {acc:.2%}")
-            else:
-                model = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
-                model.fit(X, np.random.randint(0, 2, size=len(X)))
-
-            scoring = model.predict_proba(X)[:, 1]
-            df['Scoring AI (0-100)'] = (scoring * 100).round(1)
-            df_sorted = df.sort_values(by='Scoring AI (0-100)', ascending=False)
-
-            st.subheader("🔍 Ranking leadów + rekomendacje AI")
-            for idx, row in df_sorted.iterrows():
-                st.markdown(f"### 🏥 {row['Nazwa kliniki']} – Scoring AI: {row['Scoring AI (0-100)']}%")
-
-                # Strategie kontaktu
-                strategy = ""
-                script = ""
-                if row['Scoring AI (0-100)'] >= 80:
-                    strategy = "📞 Telefon – od razu po demo"
-                    script = "Dzień dobry, wiem że widzieli Państwo demo. Czy są Państwo gotowi podjąć decyzję? Mogę zaproponować również warianty finansowania."
-                elif row['Scoring AI (0-100)'] >= 50:
-                    strategy = "📧 Mail – z podsumowaniem oferty"
-                    script = "Dzień dobry, przesyłam propozycję z podsumowaniem funkcji i cen. Proszę dać znać, czy możemy umówić się na rozmowę."
-                else:
-                    strategy = "⏳ Odłożenie kontaktu / przypomnienie za 7 dni"
-                    script = "Na ten moment nie będę ponawiał kontaktu – lead nisko oceniony. Zaplanuj follow-up za tydzień."
-
-                st.write(f"**🔄 Strategia kontaktu:** {strategy}")
-                st.markdown("**🗣️ Propozycja skryptu rozmowy:**")
-                st.code(script)
-                st.markdown("---")
-
-            st.subheader("📈 Najważniejsze cechy wpływające na scoring AI")
-            importances = model.feature_importances_
-            indices = np.argsort(importances)[::-1][:10]
-            features = X.columns[indices]
-            plt.figure(figsize=(10, 5))
-            sns.barplot(x=importances[indices], y=features)
-            st.pyplot(plt)
 else:
-    st.info("Wgraj plik CSV z leadami, aby uruchomić AI asystenta sprzedaży.")
+    dashboard()
